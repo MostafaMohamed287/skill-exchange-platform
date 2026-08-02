@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const reviewController = require("../controllers/review.controller");
+const reviewController = require("../controllers/reviewcontroller");
 
 
 router.post("/", reviewController.createReview);

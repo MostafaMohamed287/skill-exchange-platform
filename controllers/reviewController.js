@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Review = require("../models/review.model");
+const Review = require("../models/Review");
 
 
 //Create
