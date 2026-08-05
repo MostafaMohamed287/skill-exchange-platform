@@ -1,5 +1,7 @@
+
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Auth } from '../../services/auth';
 
 @Component({
@@ -11,10 +13,14 @@ import { Auth } from '../../services/auth';
 export class Register {
 
   private authService = inject(Auth);
+  private router = inject(Router);
 
   name = '';
   email = '';
   password = '';
+
+  successMessage = '';
+  errorMessage = '';
 
   register() {
     const data = {
@@ -26,10 +32,22 @@ export class Register {
     this.authService.register(data).subscribe({
       next: (response) => {
         console.log('Register successful:', response);
+
+        this.successMessage = 'Registration successful!';
+        this.errorMessage = '';
+
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 1500);
       },
+
       error: (error) => {
         console.log('Register failed:', error);
+
+        this.errorMessage = 'Registration failed. Please try again.';
+        this.successMessage = '';
       }
     });
   }
 }
+

@@ -1,5 +1,18 @@
+
 <div class="register-container">
   <h2>Create Account</h2>
+
+  @if (successMessage) {
+    <div class="success-message">
+      {{ successMessage }}
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+  }
 
   <form (ngSubmit)="register()">
 
@@ -22,3 +35,4 @@
 
   </form>
 </div>
+
