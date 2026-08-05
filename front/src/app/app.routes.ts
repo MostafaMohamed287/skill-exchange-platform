@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { LoginComponent } from './pages/login/login';
 import { Register } from './pages/register/register';
-import { Profile } from './pages/profile/profile';
+import { ProfileComponent } from './pages/profile/profile';
 import { Skills } from './pages/skills/skills';
 import { ExchangeRequests } from './pages/exchange-requests/exchange-requests';
 import { Reviews } from './pages/reviews/reviews';
@@ -16,7 +16,7 @@ export const routes: Routes = [
 
   { path: 'register', component: Register },
 
-  { path: 'profile', component: Profile },
+  { path: 'profile', component: ProfileComponent },
 
   { path: 'skills', component: Skills },
 
