@@ -1,0 +1,14 @@
+*   [33ma2d9ff2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfrontend-setup[m[33m)[m fix conflict in register
+[31m|[m[32m\[m  
+[31m|[m * [33meea67fb[m Fix registration flow
+* [32m|[m [33m88c1891[m update login and cors
+[32m|[m[32m/[m  
+* [33m86f1cb3[m[33m ([m[1;31morigin/frontend-setup[m[33m)[m Implement register frontend
+* [33m3414ac4[m initial frontend
+* [33m1c8230c[m Add frontend structure
+* [33mec12888[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m Add reviews and updates
+* [33mef4884e[m Add review module
+*   [33m275f787[m Merge branch 'master' of https://github.com/MostafaMohamed287/skill-exchange-platform
+[33m|[m[34m\[m  
+[33m|[m *   [33me8b51e1[m Merge branch 'master'
+[33m|[m [35m|[m[36m\[m  
