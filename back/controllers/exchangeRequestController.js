@@ -2,20 +2,53 @@ const ExchangeRequest = require("../models/ExchangeRequest");
 
 
 // Get All Requests
-exports.getAllRequests = async (req, res) => {
-  try {
+exports.getAllRequests = async (req,res)=>{
 
-    const requests = await ExchangeRequest.find()
-      .populate("sender", "name email")
-      .populate("receiver", "name email")
-      .populate("offeredSkill", "title")
-      .populate("requestedSkill", "title");
+try{
 
-    res.status(200).json(requests);
 
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+const requests =
+await ExchangeRequest.find()
+
+.populate(
+'sender',
+'name'
+)
+
+.populate(
+'receiver',
+'name'
+)
+
+.populate(
+'offeredSkill',
+'title'
+)
+
+.populate(
+'requestedSkill',
+'title'
+);
+
+
+
+res.json(requests);
+
+
+
+}catch(error){
+
+
+res.status(500)
+.json({
+message:error.message
+});
+
+
+}
+
+
+
 };
 
 

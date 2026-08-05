@@ -5,18 +5,13 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class Skill {
+export class User {
 
   private http = inject(HttpClient);
 
-  private apiUrl = `${environment.apiUrl}/skills`;
+  private apiUrl = `${environment.apiUrl}/users`;
 
-  getSkills() {
+  getUsers() {
     return this.http.get(this.apiUrl);
   }
-
-  getSkillById(id: string) {
-    return this.http.get(`${this.apiUrl}/${id}`);
-  }
-
 }
