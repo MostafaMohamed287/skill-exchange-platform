@@ -39,15 +39,3 @@ const exchangeRequestSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("ExchangeRequest", exchangeRequestSchema);
-
-updateStatus(id: string, status: string) {
-
-  this.exchangeService.updateRequest(id, { status }).subscribe({
-    next: () => {
-      alert(`Request ${status}`);
-      this.loadRequests();
-    },
-    error: (err) => console.error(err)
-  });
-
-}
