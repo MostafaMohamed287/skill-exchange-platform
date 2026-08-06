@@ -1,9 +1,124 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+
+import { Exchange } from '../../services/exchange';
+import { User } from '../../services/user';
+import { Skill } from '../../services/skill';
 
 @Component({
   selector: 'app-exchange-requests',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './exchange-requests.html',
-  styleUrl: './exchange-requests.css',
+  styleUrl: './exchange-requests.css'
 })
-export class ExchangeRequests {}
+export class ExchangeRequests implements OnInit {
+
+  private exchangeService = inject(Exchange);
+  private userService = inject(User);
+  private skillService = inject(Skill);
+  private fb = inject(FormBuilder);
+
+  requests: any[] = [];
+  users: any[] = [];
+  skills: any[] = [];
+
+  requestForm = this.fb.group({
+    sender: ['', Validators.required],
+    receiver: ['', Validators.required],
+    offeredSkill: ['', Validators.required],
+    requestedSkill: ['', Validators.required],
+    status: ['Pending']
+  });
+
+  ngOnInit(): void {
+    this.loadRequests();
+    this.loadUsers();
+    this.loadSkills();
+  }
+
+  loadRequests() {
+    this.exchangeService.getAllRequests().subscribe({
+      next: (data: any) => {
+        this.requests = data;
+      },
+      error: (err) => console.error(err)
+    });
+  }
+
+  loadUsers() {
+    this.userService.getUsers().subscribe({
+      next: (data: any) => {
+        this.users = data;
+      },
+      error: (err) => console.error(err)
+    });
+  }
+
+  loadSkills() {
+    this.skillService.getSkills().subscribe({
+      next: (data: any) => {
+        this.skills = data;
+      },
+      error: (err) => console.error(err)
+    });
+  }
+
+  createRequest() {
+
+    if (this.requestForm.invalid) return;
+
+    this.exchangeService.createRequest(this.requestForm.getRawValue()).subscribe({
+
+      next: () => {
+
+        alert('Exchange Request Created Successfully');
+
+        this.requestForm.reset({
+          status: 'Pending'
+        });
+
+        this.loadRequests();
+
+      },
+
+      error: (err) => console.error(err)
+
+    });
+
+  }
+
+  updateStatus(id: string, status: string) {
+
+    this.exchangeService.updateRequest(id, { status }).subscribe({
+
+      next: () => {
+
+        alert(`Request ${status}`);
+
+        this.loadRequests();
+
+      },
+
+      error: (err) => console.error(err)
+
+    });
+
+  }
+
+  deleteRequest(id: string) {
+
+    if (!confirm('Delete this request?')) return;
+
+    this.exchangeService.deleteRequest(id).subscribe({
+
+      next: () => this.loadRequests(),
+
+      error: (err) => console.error(err)
+
+    });
+
+  }
+
+}
