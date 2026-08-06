@@ -18,6 +18,8 @@ export class Register {
   name = '';
   email = '';
   password = '';
+  bio = '';
+  location = '';
 
   successMessage = '';
   errorMessage = '';
@@ -26,7 +28,9 @@ export class Register {
     const data = {
       name: this.name,
       email: this.email,
-      password: this.password
+      password: this.password,
+      bio: this.bio,
+      location: this.location
     };
 
     this.authService.register(data).subscribe({
@@ -38,7 +42,7 @@ export class Register {
 
         setTimeout(() => {
           this.router.navigate(['/']);
-        }, 1500);
+        }, 2500);
       },
 
       error: (error) => {

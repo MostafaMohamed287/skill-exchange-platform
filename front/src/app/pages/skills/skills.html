@@ -1,1 +1,165 @@
-<p>skills works!</p>
+<div class="skills-container">
+
+  <h2>Skills</h2>
+
+  <form (ngSubmit)="editingSkillId ? updateSkill() : addSkill()">
+
+    <div class="form-group">
+      <label for="title">Skill Title</label>
+
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="title"
+        placeholder="Enter skill title"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="description"
+        placeholder="Describe your skill"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+
+      <input
+        type="text"
+        id="category"
+        name="category"
+        [(ngModel)]="category"
+        placeholder="e.g. Programming"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="level">Level</label>
+
+      <select
+        id="level"
+        name="level"
+        [(ngModel)]="level"
+        required
+      >
+        <option value="" disabled>Select level</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="owner">User ID</label>
+
+      <input
+        type="text"
+        id="owner"
+        name="owner"
+        [(ngModel)]="owner"
+        placeholder="Enter user ID"
+        required
+      />
+    </div>
+
+    @if (editingSkillId) {
+
+      <button
+        type="submit"
+        class="update-skill-btn"
+      >
+        Update Skill
+      </button>
+
+      <button
+        type="button"
+        class="cancel-btn"
+        (click)="clearForm()"
+      >
+        Cancel
+      </button>
+
+    } @else {
+
+      <button
+        type="submit"
+        class="add-skill-btn"
+      >
+        Add Skill
+      </button>
+
+    }
+
+  </form>
+
+  <hr />
+
+  <h3>Available Skills</h3>
+
+  @if (skills.length === 0) {
+
+    <p>No skills available.</p>
+
+  } @else {
+
+    @for (skill of skills; track $index) {
+
+      <div class="skill-card">
+
+        <h4>{{ skill.title }}</h4>
+
+        <p>
+          {{ skill.description }}
+        </p>
+
+        <p>
+          <strong>Category:</strong>
+          {{ skill.category }}
+        </p>
+
+        <p>
+          <strong>Level:</strong>
+          {{ skill.level }}
+        </p>
+
+        <p>
+          <strong>Owner:</strong>
+          {{ skill.owner?.name }}
+        </p>
+
+        <div class="skill-actions">
+
+          <button
+            type="button"
+            class="edit-btn"
+            (click)="editSkill(skill)"
+          >
+            Edit
+          </button>
+
+          <button
+            type="button"
+            class="delete-btn"
+            (click)="deleteSkill(skill._id)"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    }
+
+  }
+
+</div>

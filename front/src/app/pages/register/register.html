@@ -49,8 +49,28 @@
       />
     </div>
 
+    <div>
+      <label for="bio">Bio</label>
+      <textarea
+        id="bio"
+        name="bio"
+        [(ngModel)]="bio"
+        placeholder="tell us about your skill"
+      ></textarea>
+    </div>
+
+    <div>
+      <label for="location">Location</label>
+      <input
+        type="text"
+        id="location"
+        name="location"
+        [(ngModel)]="location"
+        placeholder="Enter your location"
+      />
+    </div>
+
     <button type="submit">Register</button>
 
   </form>
 </div>
-
