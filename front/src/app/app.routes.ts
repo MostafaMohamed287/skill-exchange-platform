@@ -6,7 +6,7 @@ import { Register } from './pages/register/register';
 import { Profile } from './pages/profile/profile';
 import { Skills } from './pages/skills/skills';
 import { ExchangeRequests } from './pages/exchange-requests/exchange-requests';
-import { Reviews } from './pages/reviews/reviews';
+import { ReviewComponent } from './pages/reviews/reviews';
 import { NotFound } from './pages/not-found/not-found';
 
 export const routes: Routes = [
@@ -22,7 +22,6 @@ export const routes: Routes = [
 
   { path: 'exchange', component: ExchangeRequests },
 
-  { path: 'reviews', component: Reviews },
-
+{ path: 'reviews', component: ReviewComponent },
   { path: '**', component: NotFound }
 ];

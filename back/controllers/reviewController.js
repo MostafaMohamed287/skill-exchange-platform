@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const Review = require("../models/Review");
 
-
-//Create
+// Create
 exports.createReview = async (req, res) => {
   try {
     const review = await Review.create(req.body);
@@ -19,31 +18,29 @@ exports.createReview = async (req, res) => {
   }
 };
 
-
-//get all reviews
+// Get All Reviews
 exports.getReviews = async (req, res) => {
   try {
-
     const reviews = await Review.find()
       .populate("reviewer", "name email")
       .populate("reviewee", "name email")
       .populate("skill", "title");
 
+    console.log("Collection:", Review.collection.name);
+    console.log("Reviews Count:", reviews.length);
+    console.log(reviews.map(r => r._id));
+
     res.status(200).json(reviews);
 
   } catch (err) {
-
     res.status(500).json({
       message: err.message,
     });
-
   }
 };
 
-
-//get ID
+// Get Review By ID
 exports.getReviewById = async (req, res) => {
-
   try {
 
     const { id } = req.params;
@@ -68,18 +65,14 @@ exports.getReviewById = async (req, res) => {
     res.status(200).json(review);
 
   } catch (err) {
-
     res.status(500).json({
       message: err.message,
     });
-
   }
 };
 
-
-//update 
+// Update
 exports.updateReview = async (req, res) => {
-
   try {
 
     const { id } = req.params;
@@ -111,16 +104,14 @@ exports.updateReview = async (req, res) => {
     });
 
   } catch (err) {
-
     res.status(500).json({
       message: err.message,
     });
-
   }
 };
-//delete
-exports.deleteReview = async (req, res) => {
 
+// Delete
+exports.deleteReview = async (req, res) => {
   try {
 
     const { id } = req.params;
@@ -144,10 +135,8 @@ exports.deleteReview = async (req, res) => {
     });
 
   } catch (err) {
-
     res.status(500).json({
       message: err.message,
     });
-
   }
 };
