@@ -16,6 +16,10 @@ export class Skill {
     return this.http.get<any[]>(`${this.apiUrl}/skills`);
   }
 
+  getSkillById(id: string) {
+    return this.http.get(`${this.apiUrl}/skills/${id}`);
+  }
+
   createSkill(data: any) {
     return this.http.post(`${this.apiUrl}/skills`, data);
   }
@@ -28,3 +32,4 @@ export class Skill {
     return this.http.delete(`${this.apiUrl}/skills/${id}`);
   }
 }
+
